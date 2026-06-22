@@ -1,6 +1,6 @@
 -- Mirror: gac-mongo-patch scripts/v1.0.0/version/TCG-GAC-version-v1.0.0.js
 -- Release marker: v1.0.0-TP-0000 (gs_gss baseline)
-SET search_path TO public;
+SET search_path TO gs_gss, public;
 
 INSERT INTO gs_version (version, description, applied_at)
 VALUES (

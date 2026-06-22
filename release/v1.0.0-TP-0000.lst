@@ -2,6 +2,8 @@
 # Source: gs-gss-server-21/src/main/resources/db
 # Structure mirror: gac-mongo-patch release/v1.0.0-TP-0000.lst
 
+000_init_schema.sql
+
 action_logs.sql
 currencies.sql
 menus.sql

@@ -1,6 +1,6 @@
 -- Source: gs-gss-server-21/src/main/resources/db/migration/V1__init.sql
 -- ShedLock distributed scheduler table (Spring infrastructure; not in gac-mongo-patch)
-SET search_path TO public;
+SET search_path TO gs_gss, public;
 
 CREATE TABLE shedlock (
     name       VARCHAR(64)  NOT NULL,
