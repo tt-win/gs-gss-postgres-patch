@@ -1,0 +1,24 @@
+# Baseline PostgreSQL schema for gs_gss (v1.0.0-TP-0000)
+# Source: gs-gss-server-21/src/main/resources/db
+# Structure mirror: gac-mongo-patch release/v1.0.0-TP-0000.lst
+
+action_logs.sql
+currencies.sql
+menus.sql
+permissions.sql
+platforms.sql
+roles.sql
+tenants.sql
+users.sql
+gs_version.sql
+shedlock.sql
+
+currency-seed.sql
+menu-seed.sql
+permission-seed.sql
+role-seed.sql
+platform-seed.sql
+tenant-seed.sql
+user-seed.sql
+
+TCG-GS-version-v1.0.0.sql
