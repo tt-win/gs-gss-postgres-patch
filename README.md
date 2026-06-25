@@ -6,7 +6,7 @@
 - 可以從最初版本一路重建到最新版本
 - 可以從 Jira / 專案單，例如 `TP-1234`，追溯每次 DB 變更
 
-結構與命名慣例對齊 [`gac-mongo-patch`](../gac-mongo-patch)；腳本副檔名為 **`.sql`**，以 **`psql`** 執行。Baseline 內容來源為 [`gs-gss-server-21`](../gs-gss-server-21/src/main/resources/db)。
+結構與命名慣例對齊 [`gac-mongo-patch`](../gac-mongo-patch)；腳本副檔名為 **`.sql`**，以 **`psql`** 執行。Baseline 內容來源為 [`gs-gss-server-21`](../gs-gss-server-21/src/main/resources/db)（Phase 1 V2：`migration/V2__init.sql`、`dev-seed/V2__phase1_dev_seed.sql`）。
 
 ## 目錄結構
 此專案採用「系統正式版號優先，其次依專案代號或 hotfix 類型分類」的結構。
@@ -97,20 +97,23 @@ scripts/v1.0.2/hotfix/patch/TCG-117188-fix-invalid-gs-version-data.sql
 | `ddl/tables/` | 各 table 的 `CREATE TABLE` |
 | `ddl/sequences/` | `CREATE SEQUENCE`（若業務鍵需獨立序號） |
 
-### v1.0.0 基線對照（`gac-mongo-patch` → PostgreSQL）
+### v1.0.0 基線對照（Phase 1 V2）
 
-| gac-mongo-patch（`ddl/collections/`） | 本 repo（`ddl/tables/`） |
-|---------------------------------------|--------------------------|
-| `gac_action_log.js` | `action_logs.sql` |
-| `gac_currency.js` | `currencies.sql` |
-| `gac_menu.js` | `menus.sql` |
-| `gac_permission.js` | `permissions.sql` |
-| `gac_platform.js` | `platforms.sql` |
-| `gac_role.js` | `roles.sql` |
-| `gac_tenant.js` | `tenants.sql` |
-| `gac_user.js` | `users.sql` |
-| `gac_version.js` | `gs_version.sql` |
-| — | `shedlock.sql`（Spring ShedLock，僅 GS 需要） |
+| 本 repo（`ddl/tables/`） | 說明 |
+|--------------------------|------|
+| `currency_codes.sql` | 幣別代碼參考（法幣／加密） |
+| `currencies.sql` | Studio 全域幣別主檔 |
+| `menus.sql` | 選單樹（`code`／`sort`） |
+| `permissions.sql` | 權限（`code`） |
+| `users.sql` | 使用者 + `user_roles`／`user_accessible_platforms`／`user_suspensions` |
+| `roles.sql` | 角色 + `role_permissions` |
+| `platforms.sql` | 平台 + `platform_wallet_settings`／`platform_api_test_runs` |
+| `games.sql` | 遊戲 + `platform_games` |
+| `action_logs.sql` | 稽核日誌 |
+| `gs_version.sql` | patch 版號紀錄 |
+| `shedlock.sql` | Spring ShedLock |
+
+**V2 移除：** `tenants`、`menu_available_actions`（原 V1 欄位／表）。
 
 ## PostgreSQL 腳本慣例
 
@@ -181,14 +184,15 @@ release/v1.0.1-TP-1234.lst
 ```text
 000_init_schema.sql
 
-action_logs.sql
+currency_codes.sql
 currencies.sql
 menus.sql
 permissions.sql
-platforms.sql
-roles.sql
-tenants.sql
 users.sql
+roles.sql
+platforms.sql
+games.sql
+action_logs.sql
 gs_version.sql
 shedlock.sql
 
@@ -196,8 +200,6 @@ currency-seed.sql
 menu-seed.sql
 permission-seed.sql
 role-seed.sql
-platform-seed.sql
-tenant-seed.sql
 user-seed.sql
 
 TCG-GS-version-v1.0.0.sql
