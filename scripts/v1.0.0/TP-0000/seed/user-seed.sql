@@ -21,12 +21,12 @@ VALUES
 
 INSERT INTO platforms (
     id, code, name, owner_user_id, currency_id, wallet_type,
-    compliance_enabled, backend_visible, line_enabled, sequence_no, status, created_time
+    compliance_enabled, backend_visible, line_enabled, sequence_no, active, created_time
 )
 OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'TCG', 'TCG', 3, 2, 'single_wallet', false, true, false, 1, 'active', NOW()),
-    (2, 'ALF', 'Alpha Casino', 3, 1, 'single_wallet', false, true, false, 1, 'active', NOW());
+    (1, 'TCG', 'TCG', 3, 2, 'single_wallet', false, true, false, 1, true, NOW()),
+    (2, 'ALF', 'Alpha Casino', 3, 1, 'single_wallet', false, true, false, 1, true, NOW());
 
 INSERT INTO platform_wallet_settings (platform_id, callback_url, game_account, timeout_secs, created_time)
 VALUES

@@ -29,39 +29,3 @@ CREATE INDEX users_parent_id_idx ON users (parent_id);
 CREATE INDEX users_user_type_idx ON users (user_type);
 CREATE INDEX users_last_login_idx ON users (last_login_time);
 CREATE INDEX users_list_idx ON users (user_type, parent_id, last_login_time DESC);
-
-CREATE TABLE user_roles (
-    user_id BIGINT NOT NULL, -- FK → users(id), ON DELETE CASCADE
-    role_id BIGINT NOT NULL, -- FK → roles(id), ON DELETE CASCADE
-    created_time TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_time TIMESTAMPTZ,
-    version INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (user_id, role_id)
-);
-
-CREATE INDEX user_roles_role_id_idx ON user_roles (role_id);
-
-CREATE TABLE user_accessible_platforms (
-    user_id           BIGINT NOT NULL, -- FK → users(id), ON DELETE CASCADE
-    platform_id       BIGINT NOT NULL, -- FK → platforms(id), ON DELETE CASCADE
-    master_agent_id   BIGINT NOT NULL, -- FK → users(id) master_agent; = users.parent_id = platforms.owner_user_id
-    created_time      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_time      TIMESTAMPTZ,
-    version           INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (user_id, platform_id)
-);
-
-CREATE INDEX uap_platform_id_idx ON user_accessible_platforms (platform_id);
-CREATE INDEX uap_master_agent_id_idx ON user_accessible_platforms (master_agent_id);
-
-CREATE TABLE user_suspensions (
-    user_id              BIGINT      NOT NULL, -- FK → users(id) 被停權者, ON DELETE CASCADE
-    suspended_by_user_id BIGINT      NOT NULL, -- FK → users(id) 執行停權者
-    reason               TEXT,
-    created_time         TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_time         TIMESTAMPTZ,
-    version              INTEGER     NOT NULL DEFAULT 0,
-    PRIMARY KEY (user_id, suspended_by_user_id)
-);
-
-CREATE INDEX user_suspensions_suspended_by_idx ON user_suspensions (suspended_by_user_id);

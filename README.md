@@ -105,10 +105,17 @@ scripts/v1.0.2/hotfix/patch/TCG-117188-fix-invalid-gs-version-data.sql
 | `currencies.sql` | Studio 全域幣別主檔 |
 | `menus.sql` | 選單樹（`code`／`sort`） |
 | `permissions.sql` | 權限（`code`） |
-| `users.sql` | 使用者 + `user_roles`／`user_accessible_platforms`／`user_suspensions` |
-| `roles.sql` | 角色 + `role_permissions` |
-| `platforms.sql` | 平台 + `platform_wallet_settings`／`platform_api_test_runs` |
-| `games.sql` | 遊戲 + `platform_games` |
+| `users.sql` | 使用者 |
+| `roles.sql` | 角色 |
+| `role_permissions.sql` | 角色權限對應 |
+| `user_roles.sql` | 使用者角色對應 |
+| `user_accessible_platforms.sql` | 使用者可存取平台 |
+| `user_suspensions.sql` | 使用者停權紀錄 |
+| `platforms.sql` | 平台 |
+| `platform_wallet_settings.sql` | 平台錢包設定 |
+| `platform_api_test_runs.sql` | 平台 API 測試紀錄 |
+| `games.sql` | 遊戲 |
+| `platform_games.sql` | 平台遊戲對應 |
 | `action_logs.sql` | 稽核日誌 |
 | `gs_version.sql` | patch 版號紀錄 |
 | `shedlock.sql` | Spring ShedLock |

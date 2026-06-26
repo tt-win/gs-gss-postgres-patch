@@ -11,6 +11,6 @@ VALUES
 INSERT INTO currencies (id, currency_code_id, name, active, bet_options, created_by, created_time)
 OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 1, 'USD', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 1, NOW()),
-    (2, 2, 'CNY', true, '[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]'::jsonb, 1, NOW()),
-    (3, 3, 'EUR', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 1, NOW());
+    (1, 1, 'USD', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW()),
+    (2, 2, 'CNY', true, '[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]'::jsonb, 0, NOW()),
+    (3, 3, 'EUR', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW());
