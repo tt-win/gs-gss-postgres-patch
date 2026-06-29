@@ -1,8 +1,7 @@
--- Mirror: gac-mongo-patch scripts/v1.0.0/TP-0000/seed/permission-seed.js
--- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__dev_seed.sql
+-- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 SET search_path TO gs_gss, public;
 
-INSERT INTO permissions (id, name, slug, menu_id, action, description, created_time)
+INSERT INTO permissions (id, name, code, menu_id, action, description, created_time)
 OVERRIDING SYSTEM VALUE
 VALUES
     (1, '貨幣管理 - 查看', 'currency:view', 7, 'view', '查看貨幣列表', NOW()),

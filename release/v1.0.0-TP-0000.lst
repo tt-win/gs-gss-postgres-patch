@@ -1,17 +1,25 @@
 # Baseline PostgreSQL schema for gs_gss (v1.0.0-TP-0000)
-# Source: gs-gss-server-21/src/main/resources/db
-# Structure mirror: gac-mongo-patch release/v1.0.0-TP-0000.lst
+# Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
+# Seed: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 
 000_init_schema.sql
 
-action_logs.sql
+currency_codes.sql
 currencies.sql
 menus.sql
 permissions.sql
-platforms.sql
-roles.sql
-tenants.sql
 users.sql
+roles.sql
+role_permissions.sql
+user_roles.sql
+platforms.sql
+platform_wallet_settings.sql
+platform_api_test_runs.sql
+games.sql
+platform_games.sql
+user_accessible_platforms.sql
+user_suspensions.sql
+action_logs.sql
 gs_version.sql
 shedlock.sql
 
@@ -19,8 +27,6 @@ currency-seed.sql
 menu-seed.sql
 permission-seed.sql
 role-seed.sql
-platform-seed.sql
-tenant-seed.sql
 user-seed.sql
 
 TCG-GS-version-v1.0.0.sql

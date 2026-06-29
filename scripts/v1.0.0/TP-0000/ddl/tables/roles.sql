@@ -1,5 +1,4 @@
--- Mirror: gac-mongo-patch scripts/v1.0.0/TP-0000/ddl/collections/gac_role.js
--- Source: gs-gss-server-21/src/main/resources/db/migration/V1__init.sql
+-- Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
 SET search_path TO gs_gss, public;
 
 CREATE TABLE roles (
@@ -7,16 +6,21 @@ CREATE TABLE roles (
     name         VARCHAR(255) NOT NULL,
     description  TEXT,
     role_type    VARCHAR(50),
-    is_system    BOOLEAN      NOT NULL DEFAULT false,
-    is_active    BOOLEAN      NOT NULL DEFAULT true,
-    owner_id     BIGINT,
-    created_by   BIGINT,
+    protected    BOOLEAN      NOT NULL DEFAULT false,
+    active       BOOLEAN      NOT NULL DEFAULT true,
+    owner_user_id BIGINT,      -- FK → users(id)
     created_time TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    updated_time TIMESTAMPTZ
+    updated_time TIMESTAMPTZ,
+    version      INTEGER      NOT NULL DEFAULT 0,
+    CONSTRAINT roles_role_type_chk CHECK (role_type IN ('studio', 'master_agent', 'sub_account'))
 );
 
-CREATE TABLE role_permissions (
-    role_id       BIGINT NOT NULL REFERENCES roles(id) ON DELETE CASCADE,
-    permission_id BIGINT NOT NULL REFERENCES permissions(id) ON DELETE CASCADE,
-    PRIMARY KEY (role_id, permission_id)
-);
+CREATE UNIQUE INDEX roles_agent_name_key
+    ON roles (role_type, owner_user_id, name)
+    WHERE owner_user_id IS NOT NULL;
+
+CREATE UNIQUE INDEX roles_global_name_key
+    ON roles (role_type, name)
+    WHERE owner_user_id IS NULL;
+
+CREATE INDEX roles_list_idx ON roles (role_type, active, owner_user_id);
