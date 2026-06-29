@@ -112,7 +112,6 @@ scripts/v1.0.2/hotfix/patch/TCG-117188-fix-invalid-gs-version-data.sql
 | `user_accessible_platforms.sql` | 使用者可存取平台 |
 | `user_suspensions.sql` | 使用者停權紀錄 |
 | `platforms.sql` | 平台 |
-| `platform_wallet_settings.sql` | 平台錢包設定 |
 | `platform_api_test_runs.sql` | 平台 API 測試紀錄 |
 | `games.sql` | 遊戲 |
 | `platform_games.sql` | 平台遊戲對應 |

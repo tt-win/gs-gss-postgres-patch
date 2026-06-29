@@ -28,10 +28,6 @@ VALUES
     (1, 'TCG', 'TCG', 3, 2, 'single_wallet', false, true, false, 1, true, NOW()),
     (2, 'ALF', 'Alpha Casino', 3, 1, 'single_wallet', false, true, false, 1, true, NOW());
 
-INSERT INTO platform_wallet_settings (platform_id, callback_url, game_account, timeout_secs, created_time)
-VALUES
-    (1, 'https://demo.tcg.example/wallet/callback', 'tcgdemov3', 3, NOW());
-
 INSERT INTO users (
     id, username, email, password, nickname, user_type,
     agent_code, parent_id, last_modified_by, protected, status, created_time, version

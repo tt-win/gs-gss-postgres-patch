@@ -1,7 +1,7 @@
 -- Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
 SET search_path TO gs_gss, public;
 
-CREATE TABLE gs_version (
+CREATE TABLE IF NOT EXISTS gs_version (
     version      VARCHAR(50) PRIMARY KEY,
     description  TEXT,
     applied_at   TIMESTAMPTZ NOT NULL,
