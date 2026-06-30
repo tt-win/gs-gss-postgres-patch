@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS currencies (
     updated_time     TIMESTAMPTZ,
     version          INTEGER      NOT NULL DEFAULT 0
 );
+
+CREATE INDEX IF NOT EXISTS idx_c_cci_n ON currencies (currency_code_id, name);

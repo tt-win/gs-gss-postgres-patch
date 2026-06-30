@@ -26,5 +26,3 @@ CREATE INDEX IF NOT EXISTS idx_p_ci ON platforms (currency_id);
 CREATE INDEX IF NOT EXISTS idx_p_oui
     ON platforms (owner_user_id)
     WHERE backend_visible = true;
-
-CREATE INDEX IF NOT EXISTS idx_c_cci_n ON currencies (currency_code_id, name);
