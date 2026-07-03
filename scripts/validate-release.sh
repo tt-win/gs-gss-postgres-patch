@@ -53,7 +53,6 @@ UNION ALL SELECT 'permissions', count(*) FROM permissions
 UNION ALL SELECT 'roles', count(*) FROM roles
 UNION ALL SELECT 'users', count(*) FROM users
 UNION ALL SELECT 'platforms', count(*) FROM platforms
-UNION ALL SELECT 'platform_wallet_settings', count(*) FROM platform_wallet_settings
 UNION ALL SELECT 'games', count(*) FROM games
 UNION ALL SELECT 'platform_games', count(*) FROM platform_games
 UNION ALL SELECT 'gs_version', count(*) FROM gs_version

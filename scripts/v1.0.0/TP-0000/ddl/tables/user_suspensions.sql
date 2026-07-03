@@ -1,7 +1,7 @@
 -- Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
 SET search_path TO gs_gss, public;
 
-CREATE TABLE user_suspensions (
+CREATE TABLE IF NOT EXISTS user_suspensions (
     user_id              BIGINT      NOT NULL, -- FK → users(id) 被停權者, ON DELETE CASCADE
     suspended_by_user_id BIGINT      NOT NULL, -- FK → users(id) 執行停權者
     reason               TEXT,
@@ -11,4 +11,4 @@ CREATE TABLE user_suspensions (
     PRIMARY KEY (user_id, suspended_by_user_id)
 );
 
-CREATE INDEX user_suspensions_suspended_by_idx ON user_suspensions (suspended_by_user_id);
+CREATE INDEX IF NOT EXISTS idx_us_sbui ON user_suspensions (suspended_by_user_id);

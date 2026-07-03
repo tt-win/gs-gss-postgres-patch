@@ -1,7 +1,7 @@
 -- Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
 SET search_path TO gs_gss, public;
 
-CREATE TABLE shedlock (
+CREATE TABLE IF NOT EXISTS shedlock (
     name         VARCHAR(64)  NOT NULL,
     lock_until   TIMESTAMP    NOT NULL,
     locked_at    TIMESTAMP    NOT NULL,
