@@ -1,4 +1,4 @@
--- Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
+-- Source: gs-gss-21/src/main/resources/db/migration/V2__init.sql
 SET search_path TO gs_gss, public;
 
 CREATE TABLE IF NOT EXISTS permissions (

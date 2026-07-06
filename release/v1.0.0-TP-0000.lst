@@ -1,6 +1,6 @@
 # Baseline PostgreSQL schema for gs_gss (v1.0.0-TP-0000)
-# Source: gs-gss-server-21/src/main/resources/db/migration/V2__init.sql
-# Seed: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+# Source: gs-gss-21/src/main/resources/db/migration/V2__init.sql
+# Seed: gs-gss-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 
 000_init_schema.sql
 

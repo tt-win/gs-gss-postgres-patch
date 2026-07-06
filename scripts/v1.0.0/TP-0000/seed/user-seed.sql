@@ -1,4 +1,4 @@
--- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+-- Source: gs-gss-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 -- All seed accounts use password: 1qaz@WSX
 SET search_path TO gs_gss, public;
 
@@ -17,7 +17,8 @@ VALUES
      'Limited Ops', 'studio', NULL, NULL, 1, false, 'active', NOW(), 0),
     (3, 'master_agent_01', 'master01@example.com',
      '$2b$10$jEip2z41j8ctGo4S0/GKLeVL.9p/PHt5HuC49eccfje682jyGdicG',
-     'Master Agent 01', 'master_agent', 'MA01', NULL, 1, false, 'active', NOW(), 0);
+     'Master Agent 01', 'master_agent', 'MA01', NULL, 1, false, 'active', NOW(), 0)
+ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO platforms (
     id, code, name, owner_user_id, currency_id, wallet_type,
@@ -26,7 +27,8 @@ INSERT INTO platforms (
 OVERRIDING SYSTEM VALUE
 VALUES
     (1, 'TCG', 'TCG', 3, 2, 'single_wallet', false, true, false, 1, true, NOW()),
-    (2, 'ALF', 'Alpha Casino', 3, 1, 'single_wallet', false, true, false, 1, true, NOW());
+    (2, 'ALF', 'Alpha Casino', 3, 1, 'single_wallet', false, true, false, 1, true, NOW())
+ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO users (
     id, username, email, password, nickname, user_type,

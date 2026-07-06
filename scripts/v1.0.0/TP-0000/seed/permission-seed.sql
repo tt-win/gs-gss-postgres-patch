@@ -1,4 +1,4 @@
--- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+-- Source: gs-gss-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 SET search_path TO gs_gss, public;
 
 INSERT INTO permissions (id, name, code, menu_id, action, description, created_time)
@@ -63,4 +63,5 @@ VALUES
     (57, '白名單管理 - 新增', 'whitelist:create', 29, 'create', '新增白名單', NOW()),
     (58, '白名單管理 - 更新', 'whitelist:edit', 29, 'edit', '更新白名單', NOW()),
     (59, '白名單管理 - 刪除', 'whitelist:delete', 29, 'delete', '刪除白名單', NOW()),
-    (60, '資料下載 - 查看', 'download:view', 30, 'view', '顯示對接相關資訊', NOW());
+    (60, '資料下載 - 查看', 'download:view', 30, 'view', '顯示對接相關資訊', NOW())
+ON CONFLICT (id) DO UPDATE;

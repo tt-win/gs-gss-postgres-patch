@@ -1,4 +1,4 @@
--- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+-- Source: gs-gss-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
 SET search_path TO gs_gss, public;
 
 INSERT INTO menus (id, code, type, parent_id, sort, icon, created_time)
@@ -9,7 +9,8 @@ VALUES
     (3, 'account', 'category', NULL, 3, 'user', NOW()),
     (4, 'game', 'category', NULL, 4, 'appstore', NOW()),
     (5, 'announcement', 'category', NULL, 5, 'notification', NOW()),
-    (6, 'operation', 'category', NULL, 6, 'bar-chart', NOW());
+    (6, 'operation', 'category', NULL, 6, 'bar-chart', NOW())
+ON CONFLICT (id) DO UPDATE;
 
 INSERT INTO menus (id, code, type, parent_id, sort, created_time)
 OVERRIDING SYSTEM VALUE
@@ -37,4 +38,5 @@ VALUES
     (27, 'order', 'page', 6, 1, NOW()),
     (28, 'round', 'page', 6, 2, NOW()),
     (29, 'whitelist', 'page', 6, 3, NOW()),
-    (30, 'download', 'page', 6, 4, NOW());
+    (30, 'download', 'page', 6, 4, NOW())
+ON CONFLICT (id) DO UPDATE;
