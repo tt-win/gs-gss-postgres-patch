@@ -1,40 +1,50 @@
--- Source: gs-gss-server-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+-- Source: gs-gss-21/src/main/resources/db/dev-seed/V3__gss_dev_seed.sql
+-- Menus: docs/GSS_REQUIRED_PERMISSIONS.md §四
 SET search_path TO gs_gss, public;
 
 INSERT INTO menus (id, code, type, parent_id, sort, icon, created_time)
 OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'system', 'category', NULL, 1, 'setting', NOW()),
-    (2, 'backend', 'category', NULL, 2, 'team', NOW()),
-    (3, 'account', 'category', NULL, 3, 'user', NOW()),
-    (4, 'game', 'category', NULL, 4, 'appstore', NOW()),
-    (5, 'announcement', 'category', NULL, 5, 'notification', NOW()),
-    (6, 'operation', 'category', NULL, 6, 'bar-chart', NOW());
+    (1,  'home',               'page',     NULL, 1, 'home',         NOW()),
+    (2,  'announcement_mgmt',  'category', NULL, 2, 'notification', NOW()),
+    (5,  'game',               'category', NULL, 3, 'appstore',     NOW()),
+    (7,  'player_mgmt',        'category', NULL, 4, 'team',         NOW()),
+    (9,  'report_mgmt',        'category', NULL, 5, 'bar-chart',    NOW()),
+    (11, 'marketing_mgmt',     'category', NULL, 6, 'gift',         NOW()),
+    (14, 'platform_mgmt',      'category', NULL, 7, 'cloud',        NOW()),
+    (18, 'system',             'category', NULL, 8, 'setting',      NOW()),
+    (25, 'compliance',         'category', NULL, 9, 'safety',       NOW())
+ON CONFLICT (id) DO UPDATE SET
+    code       = EXCLUDED.code,
+    type       = EXCLUDED.type,
+    parent_id  = EXCLUDED.parent_id,
+    sort       = EXCLUDED.sort,
+    icon       = EXCLUDED.icon;
 
 INSERT INTO menus (id, code, type, parent_id, sort, created_time)
 OVERRIDING SYSTEM VALUE
 VALUES
-    (7, 'currency', 'page', 1, 1, NOW()),
-    (8, 'platform', 'page', 1, 2, NOW()),
-    (9, 'role', 'page', 1, 3, NOW()),
-    (10, 'operator', 'page', 1, 4, NOW()),
-    (11, 'action_log', 'page', 1, 5, NOW()),
-    (12, 'game_template', 'page', 1, 6, NOW()),
-    (13, 'game_switch', 'page', 1, 7, NOW()),
-    (14, 'master_agent', 'page', 2, 1, NOW()),
-    (15, 'agent', 'page', 2, 2, NOW()),
-    (16, 'game_setting', 'page', 2, 3, NOW()),
-    (17, 'rtp_reset', 'page', 2, 4, NOW()),
-    (18, 'rtp_data', 'page', 2, 5, NOW()),
-    (19, 'tenant', 'page', 2, 6, NOW()),
-    (20, 'user', 'page', 2, 7, NOW()),
-    (21, 'my_agent', 'page', 3, 1, NOW()),
-    (22, 'sub_account', 'page', 3, 2, NOW()),
-    (23, 'my_role', 'page', 3, 3, NOW()),
-    (24, 'player', 'page', 3, 4, NOW()),
-    (25, 'game_list', 'page', 4, 1, NOW()),
-    (26, 'marquee', 'page', 5, 1, NOW()),
-    (27, 'order', 'page', 6, 1, NOW()),
-    (28, 'round', 'page', 6, 2, NOW()),
-    (29, 'whitelist', 'page', 6, 3, NOW()),
-    (30, 'download', 'page', 6, 4, NOW());
+    (3,  'announcement',   'page', 2,  1, NOW()),
+    (4,  'marquee',        'page', 2,  2, NOW()),
+    (6,  'game_setting',   'page', 5,  1, NOW()),
+    (8,  'player',         'page', 7,  1, NOW()),
+    (10, 'report',         'page', 9,  1, NOW()),
+    (12, 'marketing',      'page', 11, 1, NOW()),
+    (13, 'payout',         'page', 11, 2, NOW()),
+    (15, 'platform',       'page', 14, 1, NOW()),
+    (16, 'platform_fee',   'page', 14, 2, NOW()),
+    (17, 'platform_quota', 'page', 14, 3, NOW()),
+    (19, 'user',           'page', 18, 1, NOW()),
+    (20, 'role',           'page', 18, 2, NOW()),
+    (21, 'whitelist',      'page', 18, 3, NOW()),
+    (22, 'currency',       'page', 18, 4, NOW()),
+    (23, 'risk',           'page', 18, 5, NOW()),
+    (24, 'action_log',     'page', 18, 6, NOW()),
+    (26, 'rtp',            'page', 25, 1, NOW())
+ON CONFLICT (id) DO UPDATE SET
+    code      = EXCLUDED.code,
+    type      = EXCLUDED.type,
+    parent_id = EXCLUDED.parent_id,
+    sort      = EXCLUDED.sort;
+
+SELECT setval(pg_get_serial_sequence('menus', 'id'), (SELECT COALESCE(MAX(id), 1) FROM menus));
