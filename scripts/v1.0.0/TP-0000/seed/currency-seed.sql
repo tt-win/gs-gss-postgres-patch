@@ -1,4 +1,4 @@
--- Source: gs-gss-21/src/main/resources/db/dev-seed/V2__phase1_dev_seed.sql
+-- Source: gs-gss-21/src/main/resources/db/dev-seed/V3__gss_dev_seed.sql
 SET search_path TO gs_gss, public;
 
 INSERT INTO currency_codes (id, code, type, created_time)
