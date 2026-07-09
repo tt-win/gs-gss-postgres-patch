@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS roles (
     protected    BOOLEAN      NOT NULL DEFAULT false,
     active       BOOLEAN      NOT NULL DEFAULT true,
     owner_user_id BIGINT,      -- FK → users(id)
+    deleted_time TIMESTAMPTZ,
     created_time TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     updated_time TIMESTAMPTZ,
     version      INTEGER      NOT NULL DEFAULT 0,
@@ -17,10 +18,10 @@ CREATE TABLE IF NOT EXISTS roles (
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_r_rt_oui_n
     ON roles (role_type, owner_user_id, name)
-    WHERE owner_user_id IS NOT NULL;
+    WHERE owner_user_id IS NOT NULL AND deleted_time IS NULL;
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_r_rt_n
     ON roles (role_type, name)
-    WHERE owner_user_id IS NULL;
+    WHERE owner_user_id IS NULL AND deleted_time IS NULL;
 
 CREATE INDEX IF NOT EXISTS idx_r_rt_a_oui ON roles (role_type, active, owner_user_id);
