@@ -57,7 +57,6 @@ INSERT INTO user_roles (user_id, role_id) VALUES
 ON CONFLICT (user_id, role_id) DO NOTHING;
 
 INSERT INTO user_accessible_platforms (user_id, platform_id, master_agent_id) VALUES
-    (2, 1, 3),
     (4, 1, 3),
     (5, 1, 3),
     (6, 1, 3)

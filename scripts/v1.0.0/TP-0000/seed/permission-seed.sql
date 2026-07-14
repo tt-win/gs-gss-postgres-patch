@@ -1,77 +1,44 @@
--- Source: gs-gss-21/src/main/resources/db/dev-seed/V3__gss_dev_seed.sql
--- Permissions: docs/GSS_REQUIRED_PERMISSIONS.md §一 (62 slugs)
+-- Source: TP-5315 / TCG-147021~056 Phase 1 permissions
+-- Permissions: docs/GSS_REQUIRED_PERMISSIONS.md §一（Phase 1 子集，28 slugs）
 SET search_path TO gs_gss, public;
 
-INSERT INTO permissions (id, name, code, menu_id, action, role_type_mask, description, created_time)
-OVERRIDING SYSTEM VALUE
+-- TP-0000 baseline owns the full permissions catalog; wipe and reset id sequence
+TRUNCATE permissions RESTART IDENTITY;
+
+INSERT INTO permissions (name, code, menu_id, action, role_type_mask, description, created_time)
 VALUES
-    (1,  '後台公告 - 檢視',           'announcement:view',              3,  'view',   7, '後台公告列表與詳情', NOW()),
-    (2,  '後台公告 - 新增',           'announcement:create',            3,  'create', 7, '新增後台公告', NOW()),
-    (3,  '後台公告 - 編輯',           'announcement:edit',              3,  'edit',   7, '編輯後台公告', NOW()),
-    (4,  '後台公告 - 刪除',           'announcement:delete',            3,  'delete', 7, '刪除後台公告', NOW()),
-    (5,  '遊戲跑馬燈 - 檢視',         'marquee:view',                   4,  'view',   7, '遊戲跑馬燈列表', NOW()),
-    (6,  '遊戲跑馬燈 - 新增',         'marquee:create',                 4,  'create', 7, '新增跑馬燈', NOW()),
-    (7,  '遊戲跑馬燈 - 編輯',         'marquee:edit',                   4,  'edit',   7, '編輯跑馬燈', NOW()),
-    (8,  '遊戲跑馬燈 - 刪除',         'marquee:delete',                 4,  'delete', 7, '刪除跑馬燈', NOW()),
-    (9,  '遊戲列表 - 檢視',           'game_setting:view',              6,  'view',   7, '遊戲 Tab 列表查詢', NOW()),
-    (10, '遊戲列表 - 編輯',           'game_setting:edit',              6,  'edit',   7, 'per-platform 啟用與購買功能 toggle', NOW()),
-    (11, '遊戲列表 - 管理上下架',     'game_listing:edit',              6,  'edit',   1, '遊戲管理 Tab 上架／獨家／備註', NOW()),
-    (12, '玩家列表 - 檢視',           'player:view',                    8,  'view',   7, '玩家列表與依 ID 查詢', NOW()),
-    (13, '玩家列表 - 匯出',           'player:export',                  8,  'export', 7, '匯出玩家資料', NOW()),
-    (14, '玩家列表 - 編輯',           'player:edit',                    8,  'edit',   1, '編輯標籤與帳號停用', NOW()),
-    (15, '報表中心 - 檢視',           'report:view',                    10, 'view',   7, '各子報表檢視', NOW()),
-    (16, '報表中心 - 匯出',           'report:export',                  10, 'export', 7, '各子報表匯出', NOW()),
-    (17, '對帳報表 - 管理費率',       'report_rate:edit',               10, 'edit',   1, '對帳報表管理費率', NOW()),
-    (18, '活動管理 - 檢視',           'marketing:view',                 12, 'view',   1, '活動管理列表', NOW()),
-    (19, '活動管理 - 新增',           'marketing:create',               12, 'create', 1, '新增活動', NOW()),
-    (20, '活動管理 - 編輯',           'marketing:edit',                 12, 'edit',   1, '編輯活動與上下架', NOW()),
-    (21, '活動管理 - 刪除',           'marketing:delete',               12, 'delete', 1, '刪除活動', NOW()),
-    (22, '派彩管理 - 檢視',           'payout:view',                    13, 'view',   7, '派彩管理列表', NOW()),
-    (23, '派彩管理 - 匯出',           'payout:export',                  13, 'export', 7, '匯出派彩資料', NOW()),
-    (24, '平台列表 - 檢視',           'platform:view',                  15, 'view',   7, '平台列表與狀態唯讀', NOW()),
-    (25, '平台列表 - 新增',           'platform:create',                15, 'create', 3, '新增平台', NOW()),
-    (26, '平台表單 - 幣別選項',       'currency_options:view',          15, 'view',   3, '新增平台幣別下拉', NOW()),
-    (27, '平台列表 - 編輯',           'platform:edit',                  15, 'edit',   3, '編輯平台基本資料', NOW()),
-    (28, '平台列表 - 合規控管',       'platform_compliance:edit',       15, 'edit',   1, '合規控管 toggle', NOW()),
-    (29, '平台列表 - Key 複製',       'platform_key_copy:view',         15, 'view',   3, '複製 Private Key', NOW()),
-    (30, '平台列表 - Key 重置',       'platform_key_reset:edit',        15, 'edit',   3, '重置 Private Key', NOW()),
-    (31, '平台列表 - 單一錢包設定',   'platform_wallet_setting:edit',   15, 'edit',   3, '單一錢包設定彈窗', NOW()),
-    (32, '平台列表 - 單一錢包測試',   'platform_wallet_test:edit',      15, 'edit',   3, '單一錢包測試彈窗', NOW()),
-    (33, '平台列表 - 後台顯示',       'platform_backend_visible:edit',  15, 'edit',   1, '後台顯示 toggle', NOW()),
-    (34, '平台列表 - 線路狀態',       'platform_line_enabled:edit',     15, 'edit',   1, '線路狀態 toggle', NOW()),
-    (35, '平台列表 - 刪除',           'platform:delete',                15, 'delete', 1, '刪除平台', NOW()),
-    (36, '平台費率 - 檢視',           'platform_fee:view',              16, 'view',   1, '平台費率列表', NOW()),
-    (37, '平台費率 - 編輯',           'platform_fee:edit',              16, 'edit',   1, '編輯平台費率', NOW()),
-    (38, '平台額度 - 檢視',           'platform_quota:view',            17, 'view',   1, '平台額度列表', NOW()),
-    (39, '平台額度 - 新增',           'platform_quota:create',          17, 'create', 1, '新增平台額度', NOW()),
-    (40, '平台額度 - 編輯',           'platform_quota:edit',            17, 'edit',   1, '編輯／轉免／臨時額度', NOW()),
-    (41, '使用者管理 - 檢視',         'user:view',                      19, 'view',   7, '使用者列表查詢', NOW()),
-    (42, '使用者管理 - 新增',         'user:create',                    19, 'create', 3, '新增與複製使用者', NOW()),
-    (43, '使用者管理 - 編輯',         'user:edit',                      19, 'edit',   3, '編輯使用者', NOW()),
-    (44, '使用者管理 - 修改密碼',     'user_password:edit',             19, 'edit',   7, '修改既有帳號密碼', NOW()),
-    (45, '使用者管理 - 啟停',         'user:delete',                    19, 'delete', 3, '啟用／停用帳號 toggle', NOW()),
-    (46, '角色管理 - 檢視',           'role:view',                      20, 'view',   3, '角色列表查詢', NOW()),
-    (47, '角色管理 - 新增',           'role:create',                    20, 'create', 3, '新增角色', NOW()),
-    (48, '角色管理 - 編輯',           'role:edit',                      20, 'edit',   3, '編輯角色與功能樹', NOW()),
-    (49, '角色管理 - 刪除',           'role:delete',                    20, 'delete', 3, '刪除角色', NOW()),
-    (50, '白名單 - 檢視',             'whitelist_domain:view',          21, 'view',   1, '伺服器／後台白名單檢視', NOW()),
-    (51, '白名單 - 新增',             'whitelist_domain:create',        21, 'create', 1, '新增白名單', NOW()),
-    (52, '白名單 - 編輯',             'whitelist_domain:edit',          21, 'edit',   1, '編輯／啟用白名單', NOW()),
-    (53, '白名單 - 刪除',             'whitelist_domain:delete',        21, 'delete', 1, '刪除白名單', NOW()),
-    (54, '幣別管理 - 檢視',           'currency:view',                  22, 'view',   1, '幣別管理列表', NOW()),
-    (55, '幣別管理 - 新增',           'currency:create',                22, 'create', 1, '新增幣別', NOW()),
-    (56, '幣別管理 - 編輯',           'currency:edit',                  22, 'edit',   1, '編輯幣別與投注選項', NOW()),
-    (57, '幣別管理 - 刪除',           'currency:delete',                22, 'delete', 1, '刪除未使用幣別', NOW()),
-    (58, '風控管理 - 檢視',           'risk:view',                      23, 'view',   1, '風控設定檢視', NOW()),
-    (59, '風控管理 - 編輯',           'risk:edit',                      23, 'edit',   1, '風控所有寫入操作', NOW()),
-    (60, '操作日誌 - 檢視',           'action_log:view',                24, 'view',   1, '操作日誌查詢', NOW()),
-    (61, 'RTP 管理 - 檢視',           'rtp:view',                       26, 'view',   1, 'RTP 資料檢視', NOW()),
-    (62, 'RTP 管理 - 編輯',           'rtp:edit',                       26, 'edit',   1, 'RTP 編輯與 RGS 申請', NOW())
-ON CONFLICT (code) DO UPDATE SET
-    name            = EXCLUDED.name,
-    menu_id         = EXCLUDED.menu_id,
-    action          = EXCLUDED.action,
-    role_type_mask  = EXCLUDED.role_type_mask,
-    description     = EXCLUDED.description;
+    -- game_list
+    ('遊戲列表 - 檢視',         'game_setting:view',             (SELECT id FROM menus WHERE code = 'game_list'), 'view',   7, '遊戲 Tab 列表查詢', NOW()),
+    ('遊戲列表 - 編輯',         'game_setting:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   7, 'per-platform 啟用與購買功能 toggle', NOW()),
+    ('遊戲列表 - 管理上下架',   'game_listing:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   1, '遊戲管理 Tab 上架／獨家／備註', NOW()),
+    -- platform
+    ('平台列表 - 檢視',         'platform:view',                 (SELECT id FROM menus WHERE code = 'platform'), 'view',   7, '平台列表與狀態唯讀', NOW()),
+    ('平台列表 - 新增',         'platform:create',               (SELECT id FROM menus WHERE code = 'platform'), 'create', 3, '新增平台', NOW()),
+    ('平台表單 - 幣別選項',     'currency_options:view',         (SELECT id FROM menus WHERE code = 'platform'), 'view',   3, '新增平台幣別下拉', NOW()),
+    ('平台列表 - 編輯',         'platform:edit',                 (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '編輯平台基本資料', NOW()),
+    ('平台列表 - 合規控管',     'platform_compliance:edit',      (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '合規控管 toggle', NOW()),
+    ('平台列表 - Key 複製',     'platform_key_copy:view',        (SELECT id FROM menus WHERE code = 'platform'), 'view',   3, '複製 Private Key', NOW()),
+    ('平台列表 - Key 重置',     'platform_key_reset:edit',       (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '重置 Private Key', NOW()),
+    ('平台列表 - 單一錢包設定', 'platform_wallet_setting:edit',  (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '單一錢包設定彈窗', NOW()),
+    ('平台列表 - 單一錢包測試', 'platform_wallet_test:edit',     (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '單一錢包測試彈窗', NOW()),
+    ('平台列表 - 後台顯示',     'platform_backend_visible:edit', (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '後台顯示 toggle', NOW()),
+    ('平台列表 - 線路狀態',     'platform_line_enabled:edit',    (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '線路狀態 toggle', NOW()),
+    ('平台列表 - 刪除',         'platform:delete',               (SELECT id FROM menus WHERE code = 'platform'), 'delete', 1, '刪除平台', NOW()),
+    -- user
+    ('使用者管理 - 檢視',       'user:view',                     (SELECT id FROM menus WHERE code = 'user'), 'view',   7, '使用者列表查詢', NOW()),
+    ('使用者管理 - 新增',       'user:create',                   (SELECT id FROM menus WHERE code = 'user'), 'create', 3, '新增與複製使用者', NOW()),
+    ('使用者管理 - 編輯',       'user:edit',                     (SELECT id FROM menus WHERE code = 'user'), 'edit',   3, '編輯使用者', NOW()),
+    ('使用者管理 - 修改密碼',   'user_password:edit',            (SELECT id FROM menus WHERE code = 'user'), 'edit',   3, '修改既有帳號密碼（Studio／總代理）', NOW()),
+    ('使用者管理 - 啟停',       'user:delete',                   (SELECT id FROM menus WHERE code = 'user'), 'delete', 3, '啟用／停用帳號 toggle', NOW()),
+    -- role
+    ('角色管理 - 檢視',         'role:view',                     (SELECT id FROM menus WHERE code = 'role'), 'view',   3, '角色列表查詢', NOW()),
+    ('角色管理 - 新增',         'role:create',                   (SELECT id FROM menus WHERE code = 'role'), 'create', 3, '新增角色', NOW()),
+    ('角色管理 - 編輯',         'role:edit',                     (SELECT id FROM menus WHERE code = 'role'), 'edit',   3, '編輯角色與功能樹', NOW()),
+    ('角色管理 - 刪除',         'role:delete',                   (SELECT id FROM menus WHERE code = 'role'), 'delete', 3, '刪除角色', NOW()),
+    -- currency
+    ('幣別管理 - 檢視',         'currency:view',                 (SELECT id FROM menus WHERE code = 'currency'), 'view',   1, '幣別管理列表', NOW()),
+    ('幣別管理 - 新增',         'currency:create',               (SELECT id FROM menus WHERE code = 'currency'), 'create', 1, '新增幣別', NOW()),
+    ('幣別管理 - 編輯',         'currency:edit',                 (SELECT id FROM menus WHERE code = 'currency'), 'edit',   1, '編輯幣別與投注選項', NOW()),
+    ('幣別管理 - 刪除',         'currency:delete',               (SELECT id FROM menus WHERE code = 'currency'), 'delete', 1, '刪除未使用幣別', NOW());
 
 SELECT setval(pg_get_serial_sequence('permissions', 'id'), (SELECT COALESCE(MAX(id), 1) FROM permissions));
