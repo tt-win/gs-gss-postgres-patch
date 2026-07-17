@@ -22,7 +22,7 @@ DELETE FROM role_permissions WHERE role_id IN (1, 2, 3);
 INSERT INTO role_permissions (role_id, permission_id)
 SELECT 1, id FROM permissions;
 
--- Role 2: Master Agent Default — §7 總代理欄非「—」+ §8 總代理✓ + §3 game_setting（不含 game_listing:edit）
+-- Role 2: Master Agent Default — §7 總代理欄非「—」+ §8 總代理✓ + §3 game_list（不含 game_mgmt:edit）
 INSERT INTO role_permissions (role_id, permission_id)
 SELECT 2, id FROM permissions
 WHERE code IN (
@@ -46,9 +46,9 @@ WHERE code IN (
     'role:create',
     'role:edit',
     'role:delete',
-    -- §3 遊戲列表（mask=7；不含 game_listing:edit mask=1）
-    'game_setting:view',
-    'game_setting:edit'
+    -- §3 遊戲列表（mask=7；不含 game_mgmt:edit mask=1）
+    'game_list:view',
+    'game_list:edit'
 );
 
 -- Role 3: Sub Account Default — §五查核「子帳號預設僅 user:view」

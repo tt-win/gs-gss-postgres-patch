@@ -8,9 +8,9 @@ TRUNCATE permissions RESTART IDENTITY;
 INSERT INTO permissions (name, code, menu_id, action, role_type_mask, description, created_time)
 VALUES
     -- game_list
-    ('遊戲列表 - 檢視',         'game_setting:view',             (SELECT id FROM menus WHERE code = 'game_list'), 'view',   7, '遊戲 Tab 列表查詢', NOW()),
-    ('遊戲列表 - 編輯',         'game_setting:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   7, 'per-platform 啟用與購買功能 toggle', NOW()),
-    ('遊戲列表 - 管理上下架',   'game_listing:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   1, '遊戲管理 Tab 上架／獨家／備註', NOW()),
+    ('遊戲列表 - 檢視',         'game_list:view',             (SELECT id FROM menus WHERE code = 'game_list'), 'view',   7, '遊戲 Tab 列表查詢', NOW()),
+    ('遊戲列表 - 編輯',         'game_list:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   7, 'per-platform 啟用與購買功能 toggle', NOW()),
+    ('遊戲列表 - 管理上下架',   'game_mgmt:edit',             (SELECT id FROM menus WHERE code = 'game_list'), 'edit',   1, '遊戲管理 Tab 上架／獨家／備註', NOW()),
     -- platform
     ('平台列表 - 檢視',         'platform:view',                 (SELECT id FROM menus WHERE code = 'platform'), 'view',   7, '平台列表與狀態唯讀', NOW()),
     ('平台列表 - 新增',         'platform:create',               (SELECT id FROM menus WHERE code = 'platform'), 'create', 3, '新增平台', NOW()),
