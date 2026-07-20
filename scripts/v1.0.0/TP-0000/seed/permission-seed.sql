@@ -1,5 +1,5 @@
 -- Source: TP-5315 / TCG-147021~056 Phase 1 permissions
--- Permissions: docs/GSS_REQUIRED_PERMISSIONS.md §一（Phase 1 子集，28 slugs）
+-- Permissions: docs/GSS_REQUIRED_PERMISSIONS.md §一（Phase 1 子集，26 slugs）
 SET search_path TO gs_gss, public;
 
 -- TP-0000 baseline owns the full permissions catalog; wipe and reset id sequence
@@ -14,13 +14,11 @@ VALUES
     -- platform
     ('平台列表 - 檢視',         'platform:view',                 (SELECT id FROM menus WHERE code = 'platform'), 'view',   7, '平台列表與狀態唯讀', NOW()),
     ('平台列表 - 新增',         'platform:create',               (SELECT id FROM menus WHERE code = 'platform'), 'create', 3, '新增平台', NOW()),
-    ('平台表單 - 幣別選項',     'currency_options:view',         (SELECT id FROM menus WHERE code = 'platform'), 'view',   3, '新增平台幣別下拉', NOW()),
     ('平台列表 - 編輯',         'platform:edit',                 (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '編輯平台基本資料', NOW()),
     ('平台列表 - 合規控管',     'platform_compliance:edit',      (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '合規控管 toggle', NOW()),
     ('平台列表 - Key 複製',     'platform_key_copy:view',        (SELECT id FROM menus WHERE code = 'platform'), 'view',   3, '複製 Private Key', NOW()),
     ('平台列表 - Key 重置',     'platform_key_reset:edit',       (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '重置 Private Key', NOW()),
-    ('平台列表 - 單一錢包設定', 'platform_wallet_setting:edit',  (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '單一錢包設定彈窗', NOW()),
-    ('平台列表 - 單一錢包測試', 'platform_wallet_test:edit',     (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '單一錢包測試彈窗', NOW()),
+    ('平台列表 - 單一錢包設定', 'platform_wallet_setting:edit',  (SELECT id FROM menus WHERE code = 'platform'), 'edit',   3, '單一錢包設定與測試彈窗', NOW()),
     ('平台列表 - 後台顯示',     'platform_backend_visible:edit', (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '後台顯示 toggle', NOW()),
     ('平台列表 - 線路狀態',     'platform_line_enabled:edit',    (SELECT id FROM menus WHERE code = 'platform'), 'edit',   1, '線路狀態 toggle', NOW()),
     ('平台列表 - 刪除',         'platform:delete',               (SELECT id FROM menus WHERE code = 'platform'), 'delete', 1, '刪除平台', NOW()),
