@@ -18,7 +18,7 @@ ON CONFLICT (id) DO UPDATE SET
 -- Rebuild default role permission sets (ids 1–3)
 DELETE FROM role_permissions WHERE role_id IN (1, 2, 3);
 
--- Role 1: Studio Admin — 全部 Phase 1 permissions（28 slugs）
+-- Role 1: Studio Admin — 全部 Phase 1 permissions（26 slugs）
 INSERT INTO role_permissions (role_id, permission_id)
 SELECT 1, id FROM permissions;
 
@@ -29,12 +29,10 @@ WHERE code IN (
     -- §7 平台管理
     'platform:view',
     'platform:create',
-    'currency_options:view',
     'platform:edit',
     'platform_key_copy:view',
     'platform_key_reset:edit',
     'platform_wallet_setting:edit',
-    'platform_wallet_test:edit',
     -- §8 使用者管理（列表列操作：總代理✓）
     'user:view',
     'user:create',

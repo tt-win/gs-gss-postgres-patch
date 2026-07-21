@@ -6,7 +6,7 @@
 - 可以從最初版本一路重建到最新版本
 - 可以從 Jira / 專案單，例如 `TP-1234`，追溯每次 DB 變更
 
-結構與命名慣例對齊 [`gac-mongo-patch`](../gac-mongo-patch)；腳本副檔名為 **`.sql`**，以 **`psql`** 執行。Baseline 內容來源為 [`gs-gss-21`](../gs-gss-21/src/main/resources/db)（Phase 1 V2：`migration/V2__init.sql`、`dev-seed/V2__phase1_dev_seed.sql`）。
+結構與命名慣例對齊 [`gac-mongo-patch`](../gac-mongo-patch)；腳本副檔名為 **`.sql`**，以 **`psql`** 執行。本 repo 是 **`gs_gss` 資料庫 schema／seed 的唯一來源**；`v1.0.0/TP-0000` baseline 最初是從 [`gs-gss-21`](../gs-gss-21) 的 Phase 1 V2（`migration/V2__init.sql`、`dev-seed/V2__phase1_dev_seed.sql`）建立的快照，但該 repo 已移除自己的副本，往後 schema／seed 異動一律只在本 repo 進行。
 
 ## 目錄結構
 此專案採用「系統正式版號優先，其次依專案代號或 hotfix 類型分類」的結構。
