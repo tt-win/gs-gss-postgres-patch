@@ -15,6 +15,7 @@ user_roles.sql
 platforms.sql
 platform_api_test_runs.sql
 games.sql
+game_history.sql
 platform_games.sql
 user_accessible_platforms.sql
 user_suspensions.sql
@@ -27,5 +28,6 @@ menu-seed.sql
 permission-seed.sql
 role-seed.sql
 user-seed.sql
+game-history-seed.sql
 
 TCG-GS-version-v1.0.0.sql
