@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     agent_code                 VARCHAR(4),
     parent_id                  BIGINT, -- FK → users(id)
     last_modified_by           BIGINT,
+    auto_include_new_platforms BOOLEAN      NOT NULL DEFAULT false, -- sub_account only: master agent's future platforms auto-granted (create "all platforms") vs fixed snapshot (edit)
     protected                  BOOLEAN      NOT NULL DEFAULT false,
     status                     VARCHAR(50)  NOT NULL DEFAULT 'active',
     last_login_time            TIMESTAMPTZ,
