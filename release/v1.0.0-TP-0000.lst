@@ -28,6 +28,5 @@ menu-seed.sql
 permission-seed.sql
 role-seed.sql
 user-seed.sql
-game-history-seed.sql
 
 TCG-GS-version-v1.0.0.sql
