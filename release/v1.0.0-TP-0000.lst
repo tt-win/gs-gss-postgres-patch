@@ -15,6 +15,7 @@ user_roles.sql
 platforms.sql
 platform_api_test_runs.sql
 games.sql
+game_history.sql
 platform_games.sql
 user_accessible_platforms.sql
 user_suspensions.sql
