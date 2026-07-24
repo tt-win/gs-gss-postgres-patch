@@ -25,9 +25,9 @@ VALUES
     -- user
     ('使用者管理 - 檢視',       'user:view',                     (SELECT id FROM menus WHERE code = 'user'), 'view',   7, '使用者列表查詢', NOW()),
     ('使用者管理 - 新增',       'user:create',                   (SELECT id FROM menus WHERE code = 'user'), 'create', 3, '新增與複製使用者', NOW()),
-    ('使用者管理 - 編輯',       'user:edit',                     (SELECT id FROM menus WHERE code = 'user'), 'edit',   3, '編輯使用者', NOW()),
+    ('使用者管理 - 編輯',       'user:edit',                     (SELECT id FROM menus WHERE code = 'user'), 'edit',   3, '編輯使用者；含啟用／停用帳號 toggle', NOW()),
     ('使用者管理 - 修改密碼',   'user_password:edit',            (SELECT id FROM menus WHERE code = 'user'), 'edit',   3, '修改既有帳號密碼（Studio／總代理）', NOW()),
-    ('使用者管理 - 啟停',       'user:delete',                   (SELECT id FROM menus WHERE code = 'user'), 'delete', 3, '啟用／停用帳號 toggle', NOW()),
+    ('使用者管理 - 刪除',       'user:delete',                   (SELECT id FROM menus WHERE code = 'user'), 'delete', 3, '刪除使用者（Hard delete）', NOW()),
     -- role
     ('角色管理 - 檢視',         'role:view',                     (SELECT id FROM menus WHERE code = 'role'), 'view',   3, '角色列表查詢', NOW()),
     ('角色管理 - 新增',         'role:create',                   (SELECT id FROM menus WHERE code = 'role'), 'create', 3, '新增角色', NOW()),
