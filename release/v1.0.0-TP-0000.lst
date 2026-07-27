@@ -14,6 +14,7 @@ role_permissions.sql
 user_roles.sql
 platforms.sql
 platform_api_test_runs.sql
+platform_wallet_settings.sql
 games.sql
 game_history.sql
 platform_games.sql
