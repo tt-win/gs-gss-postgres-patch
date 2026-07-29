@@ -21,6 +21,7 @@ platform_games.sql
 user_accessible_platforms.sql
 user_suspensions.sql
 action_logs.sql
+rgs_callback_subscription.sql
 gs_version.sql
 shedlock.sql
 
