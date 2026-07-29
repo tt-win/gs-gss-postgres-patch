@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS games (
     name                VARCHAR(255) NOT NULL,
     game_type           VARCHAR(50)  NOT NULL DEFAULT 'slot',
     active              BOOLEAN      NOT NULL DEFAULT false,
-    has_ever_listed     BOOLEAN      NOT NULL DEFAULT false,
     supports_freegame   BOOLEAN      NOT NULL DEFAULT false,
     supports_bonusgame  BOOLEAN      NOT NULL DEFAULT false,
     exclusive_user_id   BIGINT,       -- FK → users(id)

@@ -63,12 +63,12 @@ INSERT INTO user_accessible_platforms (user_id, platform_id, master_agent_id) VA
 ON CONFLICT (user_id, platform_id) DO NOTHING;
 
 INSERT INTO games (
-    id, game_code, name, game_type, active, has_ever_listed,
+    id, game_code, name, game_type, active,
     supports_freegame, supports_bonusgame, created_time
 )
 OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'DEMO01', 'Demo Slot Game', 'slot', true, true, true, false, NOW())
+    (1, 'DEMO01', 'Demo Slot Game', 'slot', true, true, false, NOW())
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO platform_games (platform_id, game_id, active, freegame_enabled, bonusgame_enabled, created_time)
