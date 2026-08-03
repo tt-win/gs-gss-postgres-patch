@@ -68,7 +68,7 @@ INSERT INTO games (
 )
 OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'DEMO01', 'Demo Slot Game', 'slot', true, true, false, NOW())
+    (1, 'DEMO01', '{"CN":"Demo Slot Game","EN":"Demo Slot Game"}'::jsonb, 'slot', true, true, false, NOW())
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO platform_games (platform_id, game_id, active, freegame_enabled, bonusgame_enabled, created_time)

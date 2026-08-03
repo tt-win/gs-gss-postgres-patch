@@ -1,0 +1,5 @@
+# v1.0.1-TP-154903: TCG-154903 migrate games.name to JSONB
+
+01_games_name_to_jsonb.sql
+
+TCG-GS-version-v1.0.1.sql
