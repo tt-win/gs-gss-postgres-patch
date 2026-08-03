@@ -1,0 +1,5 @@
+# GS PostgreSQL patch v1.0.1 — TP-5315 (TCG-147032 wallet connection-test test-run schema)
+
+TCG-147032-test-run-game-account.sql
+
+TCG-GS-version-v1.0.1.sql
