@@ -160,15 +160,18 @@ scripts/vX.Y.Z/version/TCG-GS-version-vX.Y.Z.sql
 ```sql
 SET search_path TO public;
 
-INSERT INTO gs_version (version, description, applied_at)
+INSERT INTO gs_version (db_version, build_number, description, created_time, updated_time)
 VALUES (
     'v1.0.1',
+    'v1.0.1-TP-1234',
     'GS PostgreSQL patch v1.0.1 — TP-1234',
+    NOW(),
     NOW()
 )
-ON CONFLICT (version) DO UPDATE SET
-    description = EXCLUDED.description,
-    applied_at  = EXCLUDED.applied_at;
+ON CONFLICT (build_number) DO UPDATE SET
+    db_version   = EXCLUDED.db_version,
+    description  = EXCLUDED.description,
+    updated_time = EXCLUDED.updated_time;
 ```
 
 ## Release Manifest 規則
