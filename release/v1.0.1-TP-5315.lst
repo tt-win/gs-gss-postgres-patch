@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315 — TCG-154903 games.name VARCHAR -> bilingual JSONB
+
+TCG-154903-games-name-to-jsonb.sql
+
+TCG-GS-version-v1.0.1.sql
