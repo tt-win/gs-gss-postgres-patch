@@ -18,14 +18,3 @@ BEGIN
 END $$;
 
 COMMENT ON COLUMN games.name IS 'Bilingual display names {"CN":"...","EN":"..."}; API resolves via locale';
-
-UPDATE games
-SET name = jsonb_build_object(
-    'CN', COALESCE(NULLIF(btrim(name->>'CN'), ''), NULLIF(btrim(name->>'EN'), ''), ''),
-    'EN', COALESCE(NULLIF(btrim(name->>'EN'), ''), NULLIF(btrim(name->>'CN'), ''), '')
-)
-WHERE jsonb_typeof(name) = 'object'
-  AND (
-    NULLIF(btrim(name->>'CN'), '') IS NULL
-    OR NULLIF(btrim(name->>'EN'), '') IS NULL
-  );
