@@ -1,0 +1,5 @@
+# v1.0.1-TP-155509 — TCG-155509 platform public_key_reset_time + drop key copy permission
+
+TCG-155509-platforms-public-key-reset-time.sql
+TCG-155509-drop-platform-key-copy-permission.sql
+TCG-GS-version-v1.0.1-1.sql
