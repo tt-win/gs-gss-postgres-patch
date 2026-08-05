@@ -188,7 +188,8 @@ VALUES
     (175, 'YER', 'fiat', NOW()),
     (176, 'ZAR', 'fiat', NOW()),
     (177, 'ZMW', 'fiat', NOW()),
-    (178, 'ZWG', 'fiat', NOW())
+    (178, 'ZWG', 'fiat', NOW()),
+    (179, 'TLB', 'fiat', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO currencies (id, currency_code_id, code, name, currency_type, active, bet_options, created_by, created_time)
@@ -196,5 +197,9 @@ OVERRIDING SYSTEM VALUE
 VALUES
     (1, 145, 'USD01', '美元', 'fiat', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW()),
     (2, 32, 'CNY01', '人民幣', 'fiat', true, '[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]'::jsonb, 0, NOW()),
-    (3, 46, 'EUR01', '歐元', 'fiat', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW())
+    (3, 46, 'EUR01', '歐元', 'fiat', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW()),
+    (4, 179, 'TLB01', '披索', 'fiat', true, '[0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100]'::jsonb, 0, NOW())
 ON CONFLICT (id) DO NOTHING;
+
+SELECT setval(pg_get_serial_sequence('currency_codes', 'id'), (SELECT COALESCE(MAX(id), 1) FROM currency_codes));
+SELECT setval(pg_get_serial_sequence('currencies', 'id'), (SELECT COALESCE(MAX(id), 1) FROM currencies));
