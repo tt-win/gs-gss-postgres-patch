@@ -1,0 +1,13 @@
+# v1.0.1-TP-5315-2 — TCG-155395 (permission hierarchy: parent-child + system/game category permissions)
+
+TCG-155395-permission-hierarchy-add-parent-id.sql
+
+TCG-155395-permission-hierarchy-category-permissions.sql
+
+TCG-155395-permission-hierarchy-backfill.sql
+
+TCG-155395-permission-hierarchy-grant-category-permissions.sql
+
+TCG-155395-permission-hierarchy-grant-menu-permissions.sql
+
+TCG-GS-version-v1.0.1-2.sql
