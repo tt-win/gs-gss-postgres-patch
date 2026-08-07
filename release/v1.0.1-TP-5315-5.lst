@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-5 — TCG-155682 (platform_wallet_settings/platform_api_test_runs callback_url -> platform_url)
+
+TCG-155682-wallet-callback-url-to-platform-url.sql
+
+TCG-GS-version-v1.0.1-5.sql
