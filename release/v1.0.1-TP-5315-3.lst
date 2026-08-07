@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-3 — TCG-155411 (platforms.private_key_* renamed to public_key_*)
+
+TCG-155411-platform-keys-rename-to-public.sql
+
+TCG-GS-version-v1.0.1-3.sql
