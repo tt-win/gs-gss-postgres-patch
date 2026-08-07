@@ -9,9 +9,19 @@ BEGIN
         WHERE table_schema = 'gs_gss' AND table_name = 'platforms' AND column_name = 'private_key_updated_at'
     ) AND NOT EXISTS (
         SELECT 1 FROM information_schema.columns
-        WHERE table_schema = 'gs_gss' AND table_name = 'platforms' AND column_name = 'public_key_updated_at'
+        WHERE table_schema = 'gs_gss' AND table_name = 'platforms' AND column_name = 'public_key_updated_time'
     ) THEN
-        ALTER TABLE platforms RENAME COLUMN private_key_updated_at TO public_key_updated_at;
+        ALTER TABLE platforms RENAME COLUMN private_key_updated_at TO public_key_updated_time;
+    END IF;
+
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = 'gs_gss' AND table_name = 'platforms' AND column_name = 'public_key_updated_at'
+    ) AND NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = 'gs_gss' AND table_name = 'platforms' AND column_name = 'public_key_updated_time'
+    ) THEN
+        ALTER TABLE platforms RENAME COLUMN public_key_updated_at TO public_key_updated_time;
     END IF;
 
     IF EXISTS (
@@ -26,7 +36,7 @@ BEGIN
 END $$;
 
 ALTER TABLE platforms
-    ADD COLUMN IF NOT EXISTS public_key_updated_at TIMESTAMPTZ;
+    ADD COLUMN IF NOT EXISTS public_key_updated_time TIMESTAMPTZ;
 
 ALTER TABLE platforms
     ADD COLUMN IF NOT EXISTS public_key_ready BOOLEAN NOT NULL DEFAULT true;
