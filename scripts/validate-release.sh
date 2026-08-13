@@ -5,7 +5,17 @@ DOCKER="${DOCKER:-/usr/local/bin/docker}"
 TEST_DB="${TEST_DB:-gs_gss_patch_test}"
 PG_CONTAINER="${PG_CONTAINER:-rgs-studio-server-21-postgres-1}"
 PATCH_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LST="${PATCH_ROOT}/release/v1.0.0-TP-0000.lst"
+
+# Full upgrade chain, in release order. A brownfield DB applies these one after another, so
+# validation must too (not just the v1.0.0 baseline) to catch cross-release regressions.
+RELEASES=(
+  v1.0.0-TP-0000.lst
+  v1.0.1-TP-5315.lst
+  v1.0.1-TP-5315-2.lst
+  v1.0.1-TP-5315-3.lst
+  v1.0.1-TP-5315-4.lst
+  v1.0.1-TP-5315-5.lst
+)
 
 run_psql() {
   local db=$1
@@ -32,13 +42,16 @@ trap cleanup EXIT
 cleanup
 $DOCKER exec "$PG_CONTAINER" psql -U postgres -d postgres -c "CREATE DATABASE $TEST_DB OWNER postgres;"
 
-echo "==> Running ${LST} against ${TEST_DB}..."
-while IFS= read -r f; do
-  [[ -z "$f" || "$f" =~ ^# ]] && continue
-  path=$(find_script "$f")
-  echo "  -> $f"
-  run_psql "$TEST_DB" < "$path"
-done < "$LST"
+for release in "${RELEASES[@]}"; do
+  lst="${PATCH_ROOT}/release/${release}"
+  echo "==> Running ${lst} against ${TEST_DB}..."
+  while IFS= read -r f; do
+    [[ -z "$f" || "$f" =~ ^# ]] && continue
+    path=$(find_script "$f")
+    echo "  -> $f"
+    run_psql "$TEST_DB" < "$path"
+  done < "$lst"
+done
 
 echo "==> Tables:"
 run_psql "$TEST_DB" -c "SELECT table_name FROM information_schema.tables WHERE table_schema = 'gs_gss' AND table_type = 'BASE TABLE' ORDER BY 1;"
