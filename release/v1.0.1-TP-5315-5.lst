@@ -1,0 +1,11 @@
+# v1.0.1-TP-5315-5 — TCG-155682 (platform_wallet_settings/platform_api_test_runs callback_url -> platform_url);
+# TCG-156611 compliance-review follow-ups (drop legacy platform_wallet_settings URL uniqueness on brownfield;
+# refresh stale platform_api_test_runs.all_passed step-count comment;
+# add missing platform_api_test_runs (platform_id, platform_url) unique constraint)
+
+TCG-155682-wallet-callback-url-to-platform-url.sql
+TCG-156611-platform-wallet-settings-drop-legacy-url-unique.sql
+TCG-156611-platform-api-test-runs-fix-step-count-comment.sql
+TCG-156611-platform-api-test-runs-add-unique-constraint.sql
+
+TCG-GS-version-v1.0.1-5.sql
