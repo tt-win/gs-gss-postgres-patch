@@ -26,3 +26,5 @@ ALTER TABLE currency_codes
     DROP CONSTRAINT IF EXISTS currency_codes_code_type_key;
 ALTER TABLE currency_codes
     ADD CONSTRAINT currency_codes_code_type_key UNIQUE (code, type);
+
+CREATE INDEX IF NOT EXISTS idx_c_cci ON currencies (currency_code_id);
