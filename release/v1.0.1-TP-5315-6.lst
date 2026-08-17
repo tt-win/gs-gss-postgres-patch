@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-6 — TCG-157823 share one currency_codes row per (code, type)
+
+TCG-157823-share-currency-codes-catalog.sql
+
+TCG-GS-version-v1.0.1-6.sql
