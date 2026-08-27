@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-12 — platforms soft-delete (deleted_time + live-only name unique)
+
+TCG-160762-platforms-soft-delete.sql
+
+TCG-GS-version-v1.0.1-12.sql
