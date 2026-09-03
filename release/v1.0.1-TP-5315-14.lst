@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-14 — drop unused rgs_callback_subscription
+
+TCG-162340-drop-rgs-callback-subscription.sql
+
+TCG-GS-version-v1.0.1-14.sql
