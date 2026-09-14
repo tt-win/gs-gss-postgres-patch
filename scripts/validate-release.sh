@@ -24,6 +24,7 @@ RELEASES=(
   v1.0.1-TP-5315-12.lst
   v1.0.1-TP-5315-13.lst
   v1.0.1-TP-5315-14.lst
+  v1.0.1-TP-5315-15.lst
 )
 
 run_psql() {
