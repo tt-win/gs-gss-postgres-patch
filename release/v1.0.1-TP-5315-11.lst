@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-11 — TCG-160985 remove 合規控管 toggle permission tree node (platform_compliance:edit)
+
+TCG-160985-remove-platform-compliance-permission.sql
+
+TCG-GS-version-v1.0.1-11.sql

@@ -1,0 +1,7 @@
+# v1.0.1-TP-5315-8 — TCG-158901 purge data framework (action_logs only)
+
+TCG-158901-purge-data-setting.sql
+TCG-158901-purge-data-log.sql
+TCG-158901-purge-data-setting-seed.sql
+
+TCG-GS-version-v1.0.1-8.sql

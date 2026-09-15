@@ -1,0 +1,6 @@
+# v1.0.1-TP-5315-15 — Platform Key rename + drop copy permission
+
+TCG-163219-platforms-rename-platform-key-updated-time.sql
+TCG-163219-platform-key-permission-cleanup.sql
+
+TCG-GS-version-v1.0.1-15.sql

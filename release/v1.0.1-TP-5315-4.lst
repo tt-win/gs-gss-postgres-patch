@@ -1,0 +1,6 @@
+# v1.0.1-TP-5315-4 — TCG-156085 + TCG-154902 (API Key metadata; split API/Public Key permissions)
+
+TCG-156085-platforms-api-key-updated-time.sql
+TCG-154902-split-api-public-key-permissions.sql
+
+TCG-GS-version-v1.0.1-4.sql

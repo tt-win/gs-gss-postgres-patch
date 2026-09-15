@@ -1,0 +1,5 @@
+# v1.0.1-TP-5315-9 — TCG-147045 split user_status:edit permission from user:edit
+
+TCG-147045-split-user-status-edit-permission.sql
+
+TCG-GS-version-v1.0.1-9.sql
