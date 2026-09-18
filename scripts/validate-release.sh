@@ -28,6 +28,15 @@ RELEASES=(
   v1.0.2-TP-5795-16.lst
 )
 
+# READY is an observed cross-service state and must only be written after wallet
+# provisioning succeeds. A static release seed can create a status with no key.
+if grep -Rqs --include='*.lst' \
+  '^TCG-165069-master-agent-public-key-status-seed\.sql$' \
+  "$PATCH_ROOT/release"; then
+  echo "error: release manifests must not include a static master-agent READY seed" >&2
+  exit 1
+fi
+
 run_psql() {
   local db=$1
   shift
