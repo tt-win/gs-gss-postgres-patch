@@ -26,6 +26,7 @@ RELEASES=(
   v1.0.1-TP-5315-14.lst
   v1.0.1-TP-5315-15.lst
   v1.0.2-TP-5795-16.lst
+  v1.0.2-TP-5795-17.lst
 )
 
 # READY is an observed cross-service state and must only be written after wallet
@@ -52,6 +53,17 @@ find_script() {
     exit 1
   fi
   printf '%s' "$path"
+}
+
+run_contract() {
+  local name=$1
+  local path="$PATCH_ROOT/test/$name"
+  if [[ ! -f "$path" ]]; then
+    echo "error: cannot find contract: $name" >&2
+    exit 1
+  fi
+  echo "==> $name"
+  run_psql "$TEST_DB" < "$path"
 }
 
 cleanup() {
@@ -94,5 +106,8 @@ SQL
 
 echo "==> gs_version:"
 run_psql "$TEST_DB" -c "SET search_path TO gs_gss, public; SELECT version, description FROM gs_version;"
+
+run_contract schema_contract.sql
+run_contract permission_contract.sql
 
 echo "==> PASS: release manifest applied successfully."
