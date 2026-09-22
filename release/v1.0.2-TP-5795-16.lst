@@ -1,0 +1,6 @@
+# v1.0.1-TP-5315-16 — master-agent Public Key metadata + Studio-only permission
+
+TCG-165069-master-agent-public-key-status.sql
+TCG-165069-studio-only-public-key-permission.sql
+
+TCG-GS-version-v1.0.2-16.sql
