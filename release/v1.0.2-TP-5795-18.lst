@@ -1,0 +1,6 @@
+# v1.0.2-TP-5795-18 — game name i18n supported-language seed
+
+TCG-165041-game-supported-languages.sql
+TCG-165041-game-supported-languages-seed.sql
+
+TCG-GS-version-v1.0.2-18.sql

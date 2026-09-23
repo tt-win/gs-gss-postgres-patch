@@ -1,11 +1,11 @@
--- Release marker: v1.0.1-TP-5315-16 (master-agent Public Key metadata + Studio-only permission)
+-- Release marker: v1.0.2-TP-5795-18 (game name i18n supported-language seed)
 SET search_path TO gs_gss, public;
 
 INSERT INTO gs_version (db_version, build_number, description, created_time, updated_time)
 VALUES (
     'v1.0.2',
-    'v1.0.2-TP-5795-16',
-    'GS PostgreSQL patch v1.0.2-16 — master-agent Public Key status + Studio-only permission (TCG-165069)',
+    'v1.0.2-TP-5795-18',
+    'GS PostgreSQL patch v1.0.2-18 — game_supported_languages seed table (TCG-165041)',
     NOW(),
     NOW()
 )
