@@ -1,4 +1,4 @@
--- TCG-165341: 訂單查詢 / 依單號查詢. role_type_mask=7 (studio|master_agent|sub_account).
+-- TCG-166396: 訂單查詢 / 依單號查詢. role_type_mask=7 (studio|master_agent|sub_account).
 SET search_path TO gs_gss, public;
 
 INSERT INTO menus (code, type, parent_id, sort, icon, created_time)
