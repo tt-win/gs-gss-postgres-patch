@@ -1,8 +1,7 @@
 -- TCG-166396: 訂單查詢 / 依單號查詢.
--- role_type_mask=7 only means studio, master_agent, and sub_account may be granted
--- these permissions. It does not authorize any role. Studio Admin (role 1) is the
--- full-access role and must receive new slugs explicitly; other roles are assigned
--- in 角色管理.
+-- role_type_mask=7 only limits who may receive these permissions. Grants below are
+-- explicit: Studio Admin, every master-agent role, and every sub-account role
+-- (those roles are owned by a master agent, plus the default sub-account role).
 SET search_path TO gs_gss, public;
 
 INSERT INTO menus (code, type, parent_id, sort, icon, created_time)
@@ -26,7 +25,12 @@ SELECT '依單號查詢 - 檢視', 'order_by_round:view',
 WHERE NOT EXISTS (SELECT 1 FROM permissions WHERE code = 'order_by_round:view');
 
 INSERT INTO role_permissions (role_id, permission_id)
-SELECT 1, id
-FROM permissions
-WHERE code IN ('order_query:view', 'order_by_round:view')
+SELECT r.id, p.id
+FROM roles r
+JOIN permissions p ON p.code IN ('order_query:view', 'order_by_round:view')
+WHERE r.deleted_time IS NULL
+  AND (
+    r.id = 1
+    OR r.role_type IN ('master_agent', 'sub_account')
+  )
 ON CONFLICT (role_id, permission_id) DO NOTHING;
