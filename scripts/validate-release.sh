@@ -30,6 +30,7 @@ RELEASES=(
   v1.0.2-TP-5795-18.lst
   v1.0.2-TP-5795-19.lst
   v1.0.2-TP-5795-20.lst
+  v1.0.2-TP-5795-21.lst
 )
 
 # READY is an observed cross-service state and must only be written after wallet
